@@ -43,9 +43,13 @@ class cell{
     */
     
     // For testing purpose
-    if (mouseIn && mouseClick){
+    if (mouseIn && mouseClick && turn == Turn.XTURN){
       hasX = true;
+      hasO = false;
+    }
+    if (mouseIn && mouseClick && turn == Turn.OTURN){
       hasO = true;
+      hasX = false;
     }
     
     // Cell structure
@@ -68,11 +72,11 @@ class cell{
     
     
      //Check if reset works
-    if (keyPressed){
-      if (key == ' '){
-        reset();
-      }
-    }
+    //if (keyPressed){
+    //  if (key == ' '){
+    //    reset();
+    //  }
+    //}
     
   }
   

@@ -10,7 +10,7 @@ class cellBoard{
   
   cellBoard(){
     cells = new ArrayList();
-    
+
     //Top cells
     top1 = new cell(point.x - size, point.y - size);
     top2 = new cell(point.x, point.y - size);
@@ -78,6 +78,8 @@ class cellBoard{
     //     midd3.cellCornerX + size, midd3.cellCornerY + size/2);
     //line(bot1.cellCornerX, bot1.cellCornerY + size/2,
     //     bot3.cellCornerX + size, bot3.cellCornerY + size/2);
+    
+    
   }
   
 }
