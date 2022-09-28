@@ -1,18 +1,20 @@
 class cell{
   
   float posx, posy;
+  String id;
   // for some reason size in negative mult by -1 to make positive
   float size = -1*(width - 200);
   
   public float cellCornerX, cellCornerY;
   
-  boolean empty;
-  boolean hasX, hasO;
+  boolean empty = true;
+  boolean hasX = false, hasO = false;
   boolean mouseIn, mouseClick;
-  
-  cell(float x, float y){
+    
+  cell(float x, float y, String id){
     posx = x;
     posy = y;
+    this.id = id;
     
     cellCornerX = this.posx - size/2;
     cellCornerY = this.posy - size/2;
@@ -43,14 +45,20 @@ class cell{
     */
     
     // For testing purpose
-    if (mouseIn && mouseClick && turn == Turn.XTURN){
+    if (mouseIn && mouseClick && turn == 'x' && empty){
       hasX = true;
       hasO = false;
+      empty = false;
+      changeTurn();
     }
-    if (mouseIn && mouseClick && turn == Turn.OTURN){
+    else if (mouseIn && mouseClick && turn == 'o' && empty){
       hasO = true;
       hasX = false;
+      empty = false;
+      changeTurn();
     }
+    
+
     
     // Cell structure
     rect(this.posx, this.posy, size, size);
@@ -72,11 +80,11 @@ class cell{
     
     
      //Check if reset works
-    //if (keyPressed){
-    //  if (key == ' '){
-    //    reset();
-    //  }
-    //}
+    if (keyPressed){
+      if (key == 'r'){
+        reset();
+      }
+    }
     
   }
   
@@ -96,6 +104,7 @@ class cell{
   
   // Draws X inside cell
   void drawX(){
+    stroke(255,0,0);
     line(this.posx - size/3, this.posy - size/3,
          this.posx + size/3, this.posy + size/3);
     line(this.posx + size/3, this.posy - size/3,
@@ -104,6 +113,7 @@ class cell{
   
   // Draws O inside cell
   void drawO(){
+    stroke(0,0,255);
     circle(this.posx, this.posy, this.size - this.size/3);
   }
   
@@ -112,6 +122,23 @@ class cell{
     empty = true;
     hasX = false;
     hasO = false;
+  }
+  
+  boolean hasX(){
+    return this.hasX;
+  }
+  
+  boolean hasO(){
+   return this.hasO; 
+  }
+  
+  String getId(){
+   return this.id; 
+  }
+  
+  void changeTurn(){
+    if (turn == 'x') turn = 'o';
+    else turn = 'x';
   }
   
 }
